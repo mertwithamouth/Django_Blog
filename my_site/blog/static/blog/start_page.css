@@ -1,0 +1,128 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+.top-half {
+    background-color: #016bb3; /* Üst yarı için renk (mavi) */
+    height: 50%;
+}
+
+.bottom-half {
+    background-color: #cfefde; /* Alt yarı için renk (yeşil) */
+    height: 50%;
+}
+.top_info {
+    color: white;
+    display: grid;
+    grid-template-columns: 200px 150px;
+    gap: 15px;
+    margin-top: 50px;
+    margin-left: 100px;
+    align-items: center;
+}
+
+
+.top_info img{
+    width: 150px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    margin: 20px;
+    padding: calc(var(--border) + var(--gap));
+}
+
+p{
+    margin-left: 100px;
+    font-size: 20px;
+    color:white;
+}
+
+
+
+.post_menu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 2px solid black;
+    text-align: center;
+    display: flex; /* Flexbox düzeni */
+    gap: 20px; /* Postlar arasında boşluk */
+    justify-content: center; /* Postları yatay olarak ortalar */
+    align-items: center; /* Postları dikey olarak ortalar */
+}
+
+.post_menu div {
+    display: flex;
+    flex-direction: column; /* İçerikleri dikey sırala (resim ve metin üst üste) */
+    align-items: center; /* Resim ve metni ortala */
+}
+
+.post_menu p {
+    color: black;
+    border: 2px solid black;
+    margin-top: 10px; /* Metin ile resim arasına boşluk ekler */
+
+
+}
+
+
+@property --gap{
+  syntax: '<length>';
+  inherits: true;
+  initial-value: 0;
+}
+@property --angle{
+  syntax: '<angle>';
+  inherits: true;
+  initial-value: 0deg;
+}
+
+.post_menu img {
+  --border: 15px;
+  --gap: 12px;
+  --color: #FA6900;
+
+  width: 150px;
+  aspect-ratio: 1;
+  box-sizing: border-box;
+  border-radius: 50%;
+  margin: 20px;
+  cursor: pointer;
+  padding: calc(var(--border) + var(--gap));
+
+  --angle: 90deg;
+  background:
+    radial-gradient(farthest-side,var(--color) 97%,#0000 101%) 85.35% 85.35%,
+    conic-gradient(from calc(180deg - var(--angle)/2),#0000 var(--angle),var(--color) 0),
+    radial-gradient(farthest-side,var(--color) 97%,#0000 101%) 14.65% 85.35%;
+  background-size: var(--border) var(--border),auto;
+  background-repeat: no-repeat;
+
+  -webkit-mask:
+    radial-gradient(farthest-side,
+     #000  calc(99%  - calc(var(--border) + var(--gap))),
+     #0000 calc(100% - calc(var(--border) + var(--gap)))
+           calc(99%  - var(--border)),
+     #000  calc(100% - var(--border)));
+          mask:
+    radial-gradient(farthest-side,
+     #000  calc(99%  - calc(var(--border) + var(--gap))),
+     #0000 calc(100% - calc(var(--border) + var(--gap)))
+           calc(99%  - var(--border)),
+     #000  calc(100% - var(--border)));
+  transition: --angle .4s,--gap .4s;
+}
+img:hover {
+  --angle: 0deg;
+  --gap: 5px;
+}
+
