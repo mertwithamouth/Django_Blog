@@ -11,20 +11,19 @@ body {
 
 .top-half {
     background-color: #016bb3; /* Üst yarı için renk (mavi) */
-    height: 50%;
+    height: 60%;
 }
 
 .bottom-half {
     background-color: #cfefde; /* Alt yarı için renk (yeşil) */
-    height: 50%;
+    height: 40%;
 }
 .top_info {
     color: white;
     display: grid;
     grid-template-columns: 200px 150px;
     gap: 15px;
-    margin-top: 50px;
-    margin-left: 100px;
+    margin-left: 50px;
     align-items: center;
 }
 
@@ -37,17 +36,19 @@ body {
     padding: calc(var(--border) + var(--gap));
 }
 
-p{
-    margin-left: 100px;
+#bio_p{
+
+    color: white;
+    margin-left: 50px;
     font-size: 20px;
-    color:white;
 }
+
 
 
 
 .post_menu {
     position: absolute;
-    top: 50%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: white;
@@ -61,18 +62,12 @@ p{
 }
 
 .post_menu div {
+
     display: flex;
     flex-direction: column; /* İçerikleri dikey sırala (resim ve metin üst üste) */
     align-items: center; /* Resim ve metni ortala */
 }
 
-.post_menu p {
-    color: black;
-    border: 2px solid black;
-    margin-top: 10px; /* Metin ile resim arasına boşluk ekler */
-
-
-}
 
 
 @property --gap{

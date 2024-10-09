@@ -1,0 +1,44 @@
+header {
+
+  width: 100%;
+  height: 2rem;
+  background-color: #016bb2;
+}
+
+#start_page nav {
+  width: 100%;
+  justify-content: left;
+  align-items: center;
+}
+
+#start_page nav a {
+  margin-left: 75px;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+#start_page nav a:hover,
+#start_page nav a:active {
+  color: #cf54a6;
+}
+
+
+#all_posts nav {
+  width: 100%;
+  justify-content: left;
+  align-items: center;
+}
+
+#all_posts  nav a {
+  margin-right: 75px;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-decoration: none;
+}
+#all_posts  nav a:hover,
+#all_posts  nav a:active {
+  color: #cf54a6;
+}

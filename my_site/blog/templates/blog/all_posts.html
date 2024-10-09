@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+
+{%  block css_style %}
+        <link rel="stylesheet" href="{% static "challenges/index.css" %}">
+{%  endblock %}
+
+{%  block page_title %} All Posts {%  endblock %}
+
+{%  block content %}
+        <ol>
+            {% for post in all_posts %}
+                <li><a href ='{% url "" post %}'>{{post | title}}</a> </li>
+            {% endfor %}
+        </ol>
+
+{%  endblock %}

@@ -3,6 +3,7 @@
 
         {%  block css_style %}
                  <link rel="stylesheet" href="{% static 'blog/start_page.css' %}">
+                 <link rel="stylesheet" href="{% static 'blog//includes/header.css' %}">
         {%  endblock %}
 
 
@@ -11,30 +12,39 @@
 
 
 {%  block content %}
-
+{%  include "blog/includes/header.html" %}
 
 <section class="top-half">
     <div class="top_info">
         <img src="https://media.licdn.com/dms/image/v2/D4D03AQE0fXt5_1sihQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1669444730938?e=1733961600&v=beta&t=BgVU8pqXplhhlvis4zx7Rp7NV59zS4x541KPQ-tEGvM" alt="">
         <h2 >Mert' Akin's Blog</h2>
     </div>
-    <p>Hi, My name is Mert AKin and I'm learning Django</p>
+    <p id="bio_p">Hi, My name is Mert AKin and I'm learning Django</p>
 </section>
 
 <section class="post_menu">
-    
+
         <h3>My Last Thoughts</h3>
         <div id="first_post">
             <img src="https://picsum.photos/id/1069/150/150" >
-            <p>Merhaba</p>
+            <div class="post_info">
+                <h4>First Post</h4>
+                <p>Merhaba</p>
+            </div>
         </div>
         <div id="second_post">
            <img src="https://picsum.photos/id/1074/150/150" style="--color:#0B486B">
-            <p>Merhaba</p>
+            <div class="post_info">
+                <h4>Second Post</h4>
+                <p>Merhaba</p>
+            </div>
         </div>
         <div id="third_post">
             <img src="https://picsum.photos/id/1011/150/150" style="--color:#BD1550">
-            <p>Merhaba</p>
+            <div class="post_info">
+                <h4>Third Post</h4>
+                <p>Merhaba</p>
+            </div>
         </div>
 </section>
 
