@@ -1,9 +1,13 @@
-<header>
-    <nav id="start_page">
-        <a href='{% url "start_page"  %}'>Blog</a>
-    </nav>
-    <nav id="all_posts">
-        <a href='{% url "posts"  %}'>Blogaaa</a>
-    </nav>
 
-</header>
+
+<div class="page-header">
+      <div class="header-left">
+        <a href='{% url "start_page"  %}'>Blog</a>
+      </div>
+
+
+
+      <div class="header-right">
+          <a href='{% url "posts"  %}'>All Posts</a>
+      </div>
+</div>
