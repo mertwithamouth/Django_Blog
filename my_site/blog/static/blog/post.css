@@ -1,0 +1,19 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-color: #c8b2d4;
+}
+
+.blog_post_window {
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border: 2px solid black;
+    text-align: center;
+    width: 60%;
+
+}

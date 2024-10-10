@@ -55,19 +55,22 @@ body {
     padding: 20px;
     border: 2px solid black;
     text-align: center;
-    display: flex; /* Flexbox düzeni */
-    gap: 20px; /* Postlar arasında boşluk */
-    justify-content: center; /* Postları yatay olarak ortalar */
-    align-items: center; /* Postları dikey olarak ortalar */
+    width: 60%;
+
 }
 
-.post_menu div {
 
+
+.posts_in_menu{
     display: flex;
-    flex-direction: column; /* İçerikleri dikey sırala (resim ve metin üst üste) */
-    align-items: center; /* Resim ve metni ortala */
-}
+    justify-content: center;
 
+}
+.posts_in_menu div{
+
+
+    width: 300px;
+}
 
 
 @property --gap{

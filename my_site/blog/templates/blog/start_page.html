@@ -23,29 +23,24 @@
 </section>
 
 <section class="post_menu">
-
+    <div class="header_in_menu">
         <h3>My Last Thoughts</h3>
-        <div id="first_post">
-            <img src="https://picsum.photos/id/1069/150/150" >
+    </div>
+
+   <div class="posts_in_menu">
+    {% for key, post in posts_db.items %}
+        <div>
+            <a href="{% url 'post' key %}"><img src="{{ post.1 }}" alt="Post image"></a>
             <div class="post_info">
-                <h4>First Post</h4>
-                <p>Merhaba</p>
+                <h4>{{ key }}</h4>
+                <p>{{ post.0 }}</p>  <!-- Use dot notation for index 0 -->
             </div>
         </div>
-        <div id="second_post">
-           <img src="https://picsum.photos/id/1074/150/150" style="--color:#0B486B">
-            <div class="post_info">
-                <h4>Second Post</h4>
-                <p>Merhaba</p>
-            </div>
-        </div>
-        <div id="third_post">
-            <img src="https://picsum.photos/id/1011/150/150" style="--color:#BD1550">
-            <div class="post_info">
-                <h4>Third Post</h4>
-                <p>Merhaba</p>
-            </div>
-        </div>
+    {% endfor %}
+</div>
+
+
+
 </section>
 
 <section class="bottom-half">
