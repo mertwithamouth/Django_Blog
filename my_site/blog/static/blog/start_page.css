@@ -11,7 +11,7 @@ body {
 
 .top-half {
     background-color: #016bb3; /* Üst yarı için renk (mavi) */
-    height: 60%;
+    height: 70%;
 }
 
 .bottom-half {
@@ -29,11 +29,18 @@ body {
 
 
 .top_info img{
-    width: 150px;
-    aspect-ratio: 1;
-    border-radius: 50%;
+
+    width: 10rem;
+    height: 10rem;
+    object-fit: cover;
+    object-position: top;
+    border: 5px solid white;
+    border-radius: 12px;
+    background-color: #ffe1bf;
+    transform: rotateZ(-5deg);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
     margin: 20px;
-    padding: calc(var(--border) + var(--gap));
+
 }
 
 #bio_p{
@@ -46,9 +53,9 @@ body {
 
 
 
-.post_menu {
+#latest-posts {
     position: absolute;
-    top: 60%;
+    top: 70%;
     left: 50%;
     transform: translate(-50%, -50%);
     background-color: white;
@@ -57,70 +64,20 @@ body {
     text-align: center;
     width: 60%;
 
-}
-
-
-
-.posts_in_menu{
-    display: flex;
-    justify-content: center;
 
 }
-.posts_in_menu div{
-
-
-    width: 300px;
+#latest-posts h2 {
+  text-align: center;
 }
 
-
-@property --gap{
-  syntax: '<length>';
-  inherits: true;
-  initial-value: 0;
-}
-@property --angle{
-  syntax: '<angle>';
-  inherits: true;
-  initial-value: 0deg;
+#latest-posts ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 1rem;
 }
 
-.post_menu img {
-  --border: 15px;
-  --gap: 12px;
-  --color: #FA6900;
-
-  width: 150px;
-  aspect-ratio: 1;
-  box-sizing: border-box;
-  border-radius: 50%;
-  margin: 20px;
-  cursor: pointer;
-  padding: calc(var(--border) + var(--gap));
-
-  --angle: 90deg;
-  background:
-    radial-gradient(farthest-side,var(--color) 97%,#0000 101%) 85.35% 85.35%,
-    conic-gradient(from calc(180deg - var(--angle)/2),#0000 var(--angle),var(--color) 0),
-    radial-gradient(farthest-side,var(--color) 97%,#0000 101%) 14.65% 85.35%;
-  background-size: var(--border) var(--border),auto;
-  background-repeat: no-repeat;
-
-  -webkit-mask:
-    radial-gradient(farthest-side,
-     #000  calc(99%  - calc(var(--border) + var(--gap))),
-     #0000 calc(100% - calc(var(--border) + var(--gap)))
-           calc(99%  - var(--border)),
-     #000  calc(100% - var(--border)));
-          mask:
-    radial-gradient(farthest-side,
-     #000  calc(99%  - calc(var(--border) + var(--gap))),
-     #0000 calc(100% - calc(var(--border) + var(--gap)))
-           calc(99%  - var(--border)),
-     #000  calc(100% - var(--border)));
-  transition: --angle .4s,--gap .4s;
+#latest-posts li {
+  flex: 1;
 }
-img:hover {
-  --angle: 0deg;
-  --gap: 5px;
-}
-

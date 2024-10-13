@@ -3,6 +3,7 @@
 
         {%  block css_style %}
                  <link rel="stylesheet" href="{% static 'blog/start_page.css' %}">
+<link rel="stylesheet" href="{% static 'blog/includes/post.css' %}">
                  <link rel="stylesheet" href="{% static 'blog//includes/header.css' %}">
         {%  endblock %}
 
@@ -16,32 +17,22 @@
 
 <section class="top-half">
     <div class="top_info">
-        <img src="https://media.licdn.com/dms/image/v2/D4D03AQE0fXt5_1sihQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1669444730938?e=1733961600&v=beta&t=BgVU8pqXplhhlvis4zx7Rp7NV59zS4x541KPQ-tEGvM" alt="">
+        <img src="{%static 'blog/images/mert_profile.jpg' %}" alt="">
         <h2 >Mert' Akin's Blog</h2>
     </div>
     <p id="bio_p">Hi, My name is Mert AKin and I'm learning Django</p>
 </section>
 
-<section class="post_menu">
-    <div class="header_in_menu">
-        <h3>My Last Thoughts</h3>
-    </div>
+<section id="latest-posts">
+  <h2>My Latest Thoughts</h2>
 
-   <div class="posts_in_menu">
-    {% for key, post in posts_db.items %}
-        <div>
-            <a href="{% url 'post' key %}"><img src="{{ post.1 }}" alt="Post image"></a>
-            <div class="post_info">
-                <h4>{{ key }}</h4>
-                <p>{{ post.0 }}</p>  <!-- Use dot notation for index 0 -->
-            </div>
-        </div>
-    {% endfor %}
-</div>
-
-
-
+  <ul>
+                {% for post in posts_db %}
+                        {% include "blog/includes/post.html" %}
+                {% endfor %}
+  </ul>
 </section>
+
 
 <section class="bottom-half">
 
