@@ -1,7 +1,7 @@
 
 <li>
     <article class="post">
-        <a href="">
+        <a href='{% url "post_detail" post.slug  %}'>
             <img src="{{ post.image }}">
                 <div class="post_content">
                     <h3> {{ post.title }}</h3>

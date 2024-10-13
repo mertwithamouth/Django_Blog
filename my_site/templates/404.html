@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+{%  block css_style %}
+    <link rel="stylesheet" href="{% static "404_page.css" %}">
+{%  endblock %}
+
+{%  block page_title %}
+        Something Went Wrong! We couldn't find that page!
+{%  endblock %}
+
+{%  block content %}
+            <main class="bsod container">
+              <h1 class="neg title"><span class="bg">Error - 404</span></h1>
+              <p>An error has occured, to continue:</p>
+              <p>* Return to our homepage.<br />
+              * Send us an e-mail about this error and try later.</p>
+              <nav class="nav">
+               <a href="{% url "index"  %}" class="link">HOMEPAGE</a>
+              </nav>
+            </main>
+{%  endblock %}

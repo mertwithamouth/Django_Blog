@@ -2,17 +2,27 @@
 {% load static %}
 
 {%  block css_style %}
-        <link rel="stylesheet" href="{% static 'blog/post.css' %}">
+        <link rel="stylesheet" href="{% static 'blog/post_detail.css' %}">
         <link rel="stylesheet" href="{% static 'blog//includes/header.css' %}">
 {%  endblock %}
 
-{%  block page_title %} {{post_name}} {%  endblock %}
+{% block title %}
+{{ post.title }}
+{% endblock %}
 
- {%  block content %}
+{% block content %}
 {%  include "blog/includes/header.html" %}
-<div class="blog_post_window">
-     <h1>{{post_name}}</h1>
-                <p>{{text}}</p>
-</div>
 
-{%  endblock %}
+<section id="summary">
+  <h2>{{ post.title }}</h2>
+  <article>
+    <img src="{{post.image}}" alt="{{ post.title }}" />
+    <address>By {{ post.author }}</address>
+    <div>Last updated on <time>{{ post.date|date:"d M Y" }}</time></div>
+  </article>
+</section>
+
+<main>
+  {{ post.content|linebreaks }}
+</main>
+{% endblock %}

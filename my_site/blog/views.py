@@ -86,8 +86,11 @@ def posts(request):
 
 
 def post_detail(request,slug):
-    post_text=posts_db[slug][0]
-    return render(request,"blog/post_detail.html",
-                      {  "text":post_text,
-                                "post_name":slug})
+    try:
+        identifed_post=next(post for post in posts_db if post['slug']==slug)
+        return render(request,"blog/post_detail.html",
+                    {'post':identifed_post})
+    except:
+        # raise Http404()
+        return render(request, "404.html")
 
