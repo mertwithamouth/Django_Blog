@@ -8,10 +8,8 @@ from .models import Post
 # Create your views here.
 
 
-def get_date(post):
-    return post["date"]
 def start_page(request):
-    sorted_posts=Post.objects.all().order_by('date')
+    sorted_posts=Post.objects.all().order_by('-date')[:3]
 
     return render(request,template_name='blog/start_page.html', context={'posts_db':sorted_posts})
 
@@ -24,11 +22,12 @@ def posts(request):
 
 
 
-def post_detail(request,slug)
+def post_detail(request,slug):
     try:
         identifed_post=Post.objects.get(slug=slug)
         return render(request,"blog/post_detail.html",
-                    {'post':identifed_post})
+                    {'post':identifed_post,
+                     'post_tags':identifed_post.tag.all()})
     except:
         # raise Http404()
         return render(request, "404.html")

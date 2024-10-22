@@ -15,9 +15,14 @@
 
 <section id="summary">
   <h2>{{ post.title }}</h2>
+    <div >
+        {% for tag in post_tags %}
+            <span class="tags"> {{tag.caption}} </span>
+        {% endfor %}
+    </div>
   <article>
     <img src="{{post.image_url}}" alt="{{ post.title }}" />
-    <address>By {{ post.author }}</address>
+    <address><a href="mailto:{{post.author.email}}">By {{ post.author }}</a></address>
     <div>Last updated on <time>{{ post.date|date:"d M Y" }}</time></div>
   </article>
 </section>
