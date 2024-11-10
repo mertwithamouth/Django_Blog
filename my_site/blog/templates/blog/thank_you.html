@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+ {%  block css_style %}
+     <link href="https://fonts.googleapis.com/css?family=Kaushan+Script|Source+Sans+Pro" rel="stylesheet">
+       <link rel="stylesheet" href="{% static 'blog/thank_you.css' %}">
+ {%  endblock %}
+
+{% block content %}
+    <div class=content>
+  <div class="wrapper-1">
+    <div class="wrapper-2">
+      <h1>Thank you !</h1>
+      <p>Thanks for subscribing to our news letter.  </p>
+      <p>you should receive a confirmation email soon  </p>
+        <a href="{% url 'start_page' %}"><button class="go-home">
+              go home
+              </button>
+        </a>
+    </div>
+    <div class="footer-like">
+
+       <a href="create-post">Send Another Post</a>
+      </p>
+    </div>
+</div>
+</div>
+{% endblock %}
+
+
+
+

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block css_style %}
+    <link rel="stylesheet" href="{% static 'blog/create_post.css' %}">
+    <link rel="stylesheet" href="{% static 'blog/includes/header.css' %}">
+{% endblock %}
+
+{% block title %}
+    <title>Your Post</title>
+{% endblock %}
+
+{% block content %}
+    {% include "blog/includes/header.html" %}
+    <form action="/create-post" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+            {{ form.title.label_tag }}
+            {{ form.title }}
+        </div>
+        <div class="form-group">
+            {{ form.author.label_tag }}
+            {{ form.author }}
+        </div>
+        <div class="form-group">
+            {{ form.image.label_tag }}
+            {{ form.image }}
+        </div>
+        <div class="form-group">
+            {{ form.excerpt.label_tag }}
+            {{ form.excerpt }}
+        </div>
+        <div class="form-group">
+            {{ form.tag.label_tag }}
+            {{ form.tag }}
+        </div>
+        <div class="form-group">
+            {{ form.content.label_tag }}
+            {{ form.content }}
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+{% endblock %}
