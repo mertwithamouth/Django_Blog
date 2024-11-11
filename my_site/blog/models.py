@@ -41,6 +41,9 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse('book_detail', args=[self.slug])
 
+    def __str__(self):
+        return self.title
+
 class Comment(models.Model):
     user_name=models.CharField(max_length=30)
     text=models.TextField(max_length=400)
