@@ -11,6 +11,7 @@
 {% endblock %}
 
 {% block content %}
+    {%  include "blog/includes/header.html" %}
 
 {% if comment_form.errors %}
   <div id="alert">
@@ -27,6 +28,21 @@
             <span class="tags"> {{tag.caption}} </span>
         {% endfor %}
     </div>
+    <div id="read-later">
+        <form method="POST" action="{%  url 'read-later' %}">
+            {% csrf_token %}
+            <input type="hidden" value="{{ post.id }}" name="post_id">
+
+            <button>
+            {% if is_saved_for_later %}
+                Remove From Saved Posts
+            {% else %}
+                Save For Read Later
+            {% endif %}
+            </button>
+        </form>
+
+    </div>
   <article>
     <img src="{{post.image.url}}" alt="{{ post.title }}" />
     <address><a href="mailto:{{post.author.email}}">By {{ post.author }}</a></address>
@@ -41,6 +57,7 @@
 </main>
 
     <section id="comments">
+    <h2>Comments</h2>
         <ul>
             {% for comment in comments %}
             <li>

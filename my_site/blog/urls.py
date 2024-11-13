@@ -8,4 +8,5 @@ urlpatterns = [path("", views.StartPage.as_view(), name='start_page'),
                 path("posts/<slug:slug>", views.PostDetailView.as_view() , name="post_detail"),
                 path("create-post", views.BlogPostView.as_view(), name="create-post"),
                 path("thank-you", views.ThankYouView.as_view()),
+               path('read-later', views.ReadLaterView.as_view(), name='read-later')
                ]
