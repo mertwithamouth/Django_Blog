@@ -33,7 +33,7 @@
             {% csrf_token %}
             <input type="hidden" value="{{ post.id }}" name="post_id">
 
-            <button>
+            <button id="{% if is_saved_for_later %}saved{% else %}not-saved{% endif %}">
             {% if is_saved_for_later %}
                 Remove From Saved Posts
             {% else %}

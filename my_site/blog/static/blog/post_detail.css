@@ -196,11 +196,12 @@ main {
   color: #464646;
 }
 
+
 #read-later {
   margin: 2rem 0;
 }
 
-#read-later button {
+#not-saved {
   background-color: transparent;
   border: 1px solid white;
   padding: 0.5rem 2rem;
@@ -209,14 +210,24 @@ main {
   cursor: pointer;
 }
 
-#read-later button:hover,
-#read-later button:active {
+#not-saved:hover,
+#not-saved:active {
   background-color: white;
-  color: #390281;}
-
-#saved_for_later button{
-  background-color:red
+  color: #390281;
 }
-h2{
-  align-items: center;
+
+
+#saved {
+  background-color: red;
+  border: 1px solid white;
+  padding: 0.5rem 2rem;
+  font: inherit;
+  color: white;
+  cursor: pointer;
+}
+
+#saved:hover,
+#saved:active {
+  background-color: indianred;
+  color: black;
 }
