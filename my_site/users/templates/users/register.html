@@ -7,21 +7,54 @@
 {%  endblock %}
 
 {% block title %} Register Page {% endblock title%}
-{% block content %}
 
+
+{% block content %}
     <section id="register-form">
         <h2>Registration</h2>
-        <form action="/" method="POST">
+        <form action="{% url 'users-register' %}" method="POST">
             {% csrf_token %}
-            {% for form_field in form %}
-              <div class="form-control">
-                {{ form_field.label_tag }}
-                {{ form_field }}
-                {{ form_field.errors }}
-              </div>
-            {% endfor %}
-            <button>Sign Up</button>
+
+            <div class="form-group">
+                <div class="form-control half-width">
+                    {{ form.first_name.label_tag }}
+                    {{ form.first_name }}
+                    {{ form.first_name.errors }}
+                </div>
+                <div class="form-control half-width">
+                    {{ form.last_name.label_tag }}
+                    {{ form.last_name }}
+                    {{ form.last_name.errors }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-control half-width">
+                    {{ form.username.label_tag }}
+                    {{ form.username }}
+                    {{ form.username.errors }}
+                </div>
+                <div class="form-control half-width">
+                    {{ form.email.label_tag }}
+                    {{ form.email }}
+                    {{ form.email.errors }}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="form-control half-width">
+                    {{ form.password1.label_tag }}
+                    {{ form.password1 }}
+                    {{ form.password1.errors }}
+                </div>
+                <div class="form-control half-width">
+                    {{ form.password2.label_tag }}
+                    {{ form.password2 }}
+                    {{ form.password2.errors }}
+                </div>
+            </div>
+
+            <button class="submit-button">Sign Up</button>
         </form>
     </section>
-
 {% endblock content %}
