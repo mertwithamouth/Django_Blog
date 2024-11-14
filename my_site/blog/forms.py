@@ -1,6 +1,8 @@
 from .models import Author
 from django import forms
 from .models import Post, Comment
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 
 class BlogPostForm(forms.ModelForm):
     class Meta:
@@ -16,3 +18,4 @@ class CommentForm(forms.ModelForm):
             'user_name':'Your Name',
             'text':'Your Comment'
         }
+

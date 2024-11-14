@@ -1,0 +1,27 @@
+{%  extends "base.html" %}
+{% load static %}
+
+{%  block css_style %}
+        <link rel="stylesheet" href="{% static 'users/register.css' %}">
+
+{%  endblock %}
+
+{% block title %} Register Page {% endblock title%}
+{% block content %}
+
+    <section id="register-form">
+        <h2>Registration</h2>
+        <form action="/" method="POST">
+            {% csrf_token %}
+            {% for form_field in form %}
+              <div class="form-control">
+                {{ form_field.label_tag }}
+                {{ form_field }}
+                {{ form_field.errors }}
+              </div>
+            {% endfor %}
+            <button>Sign Up</button>
+        </form>
+    </section>
+
+{% endblock content %}

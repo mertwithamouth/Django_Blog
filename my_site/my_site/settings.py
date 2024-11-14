@@ -31,6 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'users',
     'blog',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -56,6 +57,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [BASE_DIR /"blog"/"templates",
+                    BASE_DIR /"users"/"templates",
                  BASE_DIR /"templates"],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -120,7 +122,8 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [BASE_DIR / "static",
-                    BASE_DIR / "blog"/"static"]
+                    BASE_DIR / "blog"/"static",
+                    BASE_DIR / "users"/"static"]
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
