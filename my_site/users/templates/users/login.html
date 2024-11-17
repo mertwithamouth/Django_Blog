@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{%  block css_style %}
+        <link rel="stylesheet" href="{% static 'users/login.css' %}">
+
+{%  endblock %}
+
+{% block title %} Login Page {% endblock title%}
+
+{% block content %}
+    <form action="{% url 'login' %}" method="POST">
+    {% csrf_token %}
+        {% for field in form %}
+            <div class="form-control">
+                {{ field.label_tag}}
+                {{ field }}
+                {{ field.error}}
+            </div>
+        {% endfor %}
+        <button>Login</button>
+
+
+    </form>
+
+
+{% endblock content %}

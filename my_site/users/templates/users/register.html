@@ -12,9 +12,8 @@
 {% block content %}
     <section id="register-form">
         <h2>Registration</h2>
-        <form action="{% url 'users-register' %}" method="POST">
+        <form action="{% url 'register' %}" method="POST">
             {% csrf_token %}
-
             <div class="form-group">
                 <div class="form-control half-width">
                     {{ form.first_name.label_tag }}
