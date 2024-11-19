@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-from django.views.generic import DetailView
+from django.views.generic import DetailView, UpdateView
 from django.views.generic.edit import View
 from django.contrib.auth.views import LoginView, PasswordResetView
 from django.contrib import messages
@@ -87,3 +87,7 @@ class ProfileDetailView(LoginRequiredMixin,DetailView):
         # Return the Profile of the currently logged-in user
         return self.request.user.profile
 
+
+class ProfileUpdateView(LoginRequiredMixin,UpdateView):
+    template_name = 'users/profile_update.html'
+    success_url =  reverse_lazy('profile') 
