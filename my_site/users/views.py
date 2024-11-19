@@ -7,7 +7,7 @@ from django.contrib.auth.views import LoginView, PasswordResetView
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.messages.views import SuccessMessageMixin
-from .forms import RegisterForm,LoginForm
+from .forms import RegisterForm,LoginForm, UpdateUserForm,UpdateProfileForm
 from .models import Profile
 # Create your views here.
 class UserProfile(View):
@@ -90,4 +90,21 @@ class ProfileDetailView(LoginRequiredMixin,DetailView):
 
 class ProfileUpdateView(LoginRequiredMixin,UpdateView):
     template_name = 'users/profile_update.html'
-    success_url =  reverse_lazy('profile') 
+    success_url = reverse_lazy('users-profile')
+
+    def get(self, request, *args, **kwargs):
+        user_form = UpdateUserForm(instance=request.user)
+        profile_form = UpdateProfileForm(instance=request.user.profile)
+        return render(request, self.template_name, {'user_form': user_form, 'profile_form': profile_form})
+
+    def post(self, request, *args, **kwargs):
+        user_form = UpdateUserForm(request.POST, instance=request.user)
+        profile_form = UpdateProfileForm(request.POST, request.FILES, instance=request.user.profile)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, f'Your profile has been updated!')
+            print('it is saved')
+            return redirect('users-profile')
+            print('it is saved2')
+        return render(request, self.template_name, {'user_form': user_form, 'profile_form': profile_form})
