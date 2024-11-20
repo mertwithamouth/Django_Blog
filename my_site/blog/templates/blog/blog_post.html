@@ -3,7 +3,7 @@
 
 {% block css_style %}
     <link rel="stylesheet" href="{% static 'blog/create_post.css' %}">
-    <link rel="stylesheet" href="{% static 'blog/includes/header.css' %}">
+    <link rel="stylesheet" href="{% static 'header.css' %}">
 {% endblock %}
 
 {% block title %}
@@ -11,16 +11,12 @@
 {% endblock %}
 
 {% block content %}
-    {% include "blog/includes/header.html" %}
-    <form action="/create-post" method="POST" enctype="multipart/form-data">
+    {% include "header.html" %}
+    <form action="{% url 'create-post' %}" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         <div class="form-group">
             {{ form.title.label_tag }}
             {{ form.title }}
-        </div>
-        <div class="form-group">
-            {{ form.author.label_tag }}
-            {{ form.author }}
         </div>
         <div class="form-group">
             {{ form.image.label_tag }}
@@ -38,6 +34,25 @@
             {{ form.content.label_tag }}
             {{ form.content }}
         </div>
+        <div class="form-group">
+            {{ form.rating.label_tag }}
+
+            <input type="number" step="0.1" name="rating" min="0" max="10" required>
+        </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+
+    {% if form.errors %}
+    <div class="alert alert-danger">
+        <ul>
+            {% for field in form %}
+                {% for error in field.errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            {% endfor %}
+        </ul>
+    </div>
+{% endif %}
 {% endblock %}
+
+

@@ -3,7 +3,7 @@
 
 {%  block css_style %}
         <link rel="stylesheet" href="{% static 'blog/post_detail.css' %}">
-        <link rel="stylesheet" href="{% static 'blog//includes/header.css' %}">
+        <link rel="stylesheet" href="{% static 'header.css' %}">
 {%  endblock %}
 
 {% block title %}
@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block content %}
-    {%  include "blog/includes/header.html" %}
+    {%  include "header.html" %}
 
 {% if comment_form.errors %}
   <div id="alert">
@@ -77,9 +77,11 @@
     {% csrf_token %}
     {% for form_field in comment_form %}
       <div class="form-control {% if form_field.errors %}invalid{% endif %}">
-        {{ form_field.label_tag }}
-        {{ form_field }}
-        {{ form_field.errors }}
+        {% if form_field.name != "user_name" %}
+            {{ form_field.label_tag }}
+            {{ form_field }}
+            {{ form_field.errors }}
+        {% endif %}
       </div>
     {% endfor %}
     <button>Save Comment</button>

@@ -3,7 +3,7 @@
 
 {%  block css_style %}
         <link rel="stylesheet" href="{% static 'blog/read_later.css' %}">
-        <link rel="stylesheet" href="{% static 'blog//includes/header.css' %}">
+        <link rel="stylesheet" href="{% static 'header.css' %}">
 {%  endblock %}
 
 {% block title %}
@@ -12,7 +12,7 @@ Read Later Page
 
 
 {% block content %}
-    {%  include "blog/includes/header.html" %}
+    {%  include "header.html" %}
     <section id="stored-posts">
 
         {%  if not has_posts %}

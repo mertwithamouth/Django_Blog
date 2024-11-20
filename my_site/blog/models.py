@@ -1,6 +1,8 @@
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
+from django.contrib.auth.models import User
+from django.core.validators import MaxValueValidator, MinValueValidator
 
 from datetime import datetime
 
@@ -12,26 +14,17 @@ class Tag(models.Model):
         return self.caption
 
 
-class Author(models.Model):
-    first_name = models.CharField(max_length=50)
-    last_name = models.CharField(max_length=50)
-    username = models.CharField(max_length=100)
-    email = models.EmailField()
-
-    def full_name(self):
-        return f"{self.first_name} {self.last_name}"
-    def __str__(self):
-        return self.full_name()
 
 class Post(models.Model):
     title = models.CharField(max_length=200)
-    author=models.ForeignKey(Author, on_delete=models.CASCADE, null=True, related_name='posts')
+    author=models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     excerpt = models.CharField(max_length=200)
     image=models.ImageField(upload_to='posts/',null=True)
     date = models.DateField(auto_now=True)
     slug=models.SlugField(default = '', null=False, db_index=True, blank=True)
     tag=models.ManyToManyField(Tag)
     content = models.TextField()
+    rating = models.FloatField(validators=[MinValueValidator(0.0), MaxValueValidator(10.0)])
 
 
     def save(self, *args, **kwargs):
@@ -45,6 +38,6 @@ class Post(models.Model):
         return self.title
 
 class Comment(models.Model):
-    user_name=models.CharField(max_length=30)
+    user_name=models.ForeignKey(User, on_delete=models.CASCADE)
     text=models.TextField(max_length=400)
     post=models.ForeignKey(Post,on_delete=models.SET_NULL, null=True, related_name='comments')

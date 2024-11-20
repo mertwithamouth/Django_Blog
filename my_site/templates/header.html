@@ -11,6 +11,13 @@
       <div class="header-right">
           <a href='{% url "read-later"  %}'>Stored Posts</a>
           <a href='{% url "create-post"  %}'>Create Post</a>
+              {% if user.is_authenticated %}
+                <a href='{% url "users-profile"  %}'>{{ request.user.username }}</a>
+                  {% else %}
+                  <a href='{% url "login"  %}'>Log In</a>
+            {% endif %}
+
+
       </div>
 
 

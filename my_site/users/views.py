@@ -41,7 +41,7 @@ class RegisterView(View):
     def dispatch(self, request, *args, **kwargs):
         # will redirect to the home page if a user tries to access the register page while logged in
         if request.user.is_authenticated:
-            return redirect(to='users')
+            return redirect(to='users-home')
 
         # else process dispatch as it otherwise normally would
         return super(RegisterView, self).dispatch(request, *args, **kwargs)
@@ -71,10 +71,6 @@ class ResetPasswordView(SuccessMessageMixin,PasswordResetView):
     subject_template_name = 'users/password_reset_subject.txt'
     success_message = 'Your password has been reset.'
     success_url= reverse_lazy("login")
-
-@login_required
-def profile(request):
-    return render(request,'users/profile.html')
 
 
 class ProfileDetailView(LoginRequiredMixin,DetailView):

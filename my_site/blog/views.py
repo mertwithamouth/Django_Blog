@@ -1,6 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
+from django.contrib.auth.mixins import LoginRequiredMixin
 from datetime import date
+from django.urls import reverse_lazy
 
 from django.urls import reverse
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView,DetailView,TemplateView,View
@@ -71,7 +73,7 @@ class PostDetailView(View):
 
         context = {
             'post':post,
-            'comment_form':CommentForm(),
+            'comment_form':CommentForm(initial={'user_name': request.user}),
             "post_tags":post.tag.all(),
             'comments': post.comments.all().order_by('-id'),
             'is_saved_for_later':self.is_stored_post(request,post.id),
@@ -85,6 +87,7 @@ class PostDetailView(View):
         if form.is_valid():
             comment=form.save(commit=False)
             comment.post=post
+            comment.user_name = request.user
             comment.save()
             #return HttpResponseRedirect('/thank-you')
             return HttpResponseRedirect(reverse('post_detail', args=[slug]))
@@ -102,11 +105,25 @@ class PostDetailView(View):
 
 
 
-class BlogPostView(CreateView):
-    model = Post
-    form_class = BlogPostForm
+class BlogPostView(LoginRequiredMixin, View):
     template_name = 'blog/blog_post.html'
-    success_url = "thank-you"
+    success_url = reverse_lazy("thank-you")
+
+    def get(self, request):
+        form = BlogPostForm(initial={'author': request.user})  # Author'ı initial olarak ata
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request, *args, **kwargs):
+        form = BlogPostForm(request.POST, request.FILES)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user  # Author'ı kaydet
+            post.save()
+            return redirect(self.success_url)  # Başarıyla kaydedildiyse yönlendir
+        return render(request, self.template_name, {'form': form})
+
+
+
 
 class ThankYouView(TemplateView):
     template_name="blog/thank_you.html"
