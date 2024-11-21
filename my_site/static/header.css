@@ -1,34 +1,61 @@
-.page-header {
-
-  width: 100%;
-  height: 2rem;
-  background-color: #016bb2;
-  display: flex;
-  justify-content: space-between;
+/* Navbar Styles */
+.navbar {
+    background-color: #333; /* Koyu arka plan rengi */
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between; /* Sol ve sağ grupları birbirinden ayırır */
+    align-items: center;
 }
 
-.header-left a{
-  margin-left: 75px;
-  color: white;
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-decoration: none;
+.navbar .nav-links {
+    display: flex;
+    gap: 20px;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
 }
 
-.header-left a:hover,
-.header-left a:active {
-  color: #cf54a6;
+.navbar .nav-links li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
 }
 
-.header-right a{
-  margin-right: 75px;
-  color: white;
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-decoration: none;
+.navbar .nav-links li a:hover,
+.navbar .nav-links li a.active {
+    color: #1E90FF; /* Mavi renk */
 }
 
-.header-right a:hover,
-.header-right a:active {
-  color: #910000;
+/* Profil ve Butonları Sağ Hizala */
+.navbar .auth-section {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Butonlar arasındaki boşluk */
+}
+
+.navbar .profile-btn,
+.navbar .logout-btn {
+    background-color: #444;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.navbar .profile-btn:hover,
+.navbar .logout-btn:hover {
+    background-color: #555;
+}
+
+.navbar .auth-section a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.navbar .auth-section a:hover {
+    color: #1E90FF;
 }

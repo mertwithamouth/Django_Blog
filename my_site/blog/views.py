@@ -7,7 +7,7 @@ from django.urls import reverse_lazy
 from django.urls import reverse
 from django.views.generic import CreateView, ListView, UpdateView, DeleteView,DetailView,TemplateView,View
 
-from .models import Post
+from .models import Post, StoredPost
 from .forms import BlogPostForm,CommentForm
 # Create your views here.
 
@@ -55,53 +55,56 @@ class AllPostsListView(ListView):
 
 
 class PostDetailView(View):
-    def is_stored_post(self, request,post_id):
-        stored_posts = request.session.get('stored_posts')
-        if stored_posts is not None:
-            is_saved_for_later = post_id in stored_posts
-        else:
-            is_saved_for_later = False
-
-        return is_saved_for_later
+    def is_stored_post(self, request, post_id):
+        if request.user.is_authenticated:
+            return StoredPost.objects.filter(user=request.user, post_id=post_id).exists()
+        return False
 
     model = Post
     template_name = 'blog/post_detail.html'
 
-
-    def get(self, request, slug):
-        post=Post.objects.get(slug=slug)
-
-        context = {
-            'post':post,
-            'comment_form':CommentForm(initial={'user_name': request.user}),
-            "post_tags":post.tag.all(),
-            'comments': post.comments.all().order_by('-id'),
-            'is_saved_for_later':self.is_stored_post(request,post.id),
-        }
-        return render(request, 'blog/post_detail.html',
-                      context=context)
-
-    def post(self, request,slug):
-        form = CommentForm(request.POST)
-        post = Post.objects.get(slug=slug)
-        if form.is_valid():
-            comment=form.save(commit=False)
-            comment.post=post
-            comment.user_name = request.user
-            comment.save()
-            #return HttpResponseRedirect('/thank-you')
-            return HttpResponseRedirect(reverse('post_detail', args=[slug]))
+    def get(self, request, post_id):
+        post = Post.objects.get(id=post_id)
 
         context = {
             'post': post,
-            'comment_form': CommentForm(),
-            "post_tags": post.tag.all,
+            'comment_form': CommentForm(initial={'user_name': request.user}),
+            "post_tags": post.tag.all(),
             'comments': post.comments.all().order_by('-id'),
-            'is_saved_for_later':self.is_stored_post(request,post.id),
+            'is_saved_for_later': self.is_stored_post(request, post.id),
         }
-        return render(request, 'blog/post_detail.html',
-                      context=context)
+        return render(request, 'blog/post_detail.html', context=context)
 
+    def post(self, request, post_id):
+        action = request.POST.get('action')
+        post = Post.objects.get(id=post_id)
+
+        if action == 'save':
+            if request.user.is_authenticated:
+                StoredPost.objects.get_or_create(user=request.user, post=post)
+        elif action == 'remove':
+            if request.user.is_authenticated:
+                StoredPost.objects.filter(user=request.user, post=post).delete()
+        else:
+            form = CommentForm(request.POST)
+            if form.is_valid():
+                comment = form.save(commit=False)
+                comment.post = post
+                comment.user_name = request.user
+                comment.save()
+
+        return HttpResponseRedirect(reverse('post_detail', args=[post_id]))
+
+
+
+        context = {
+            'post': post,
+            'comment_form': CommentForm(initial={'user_name': request.user}),
+            "post_tags": post.tag.all(),
+            'comments': post.comments.all().order_by('-id'),
+            'is_saved_for_later': self.is_stored_post(request, post.id),
+        }
+        return render(request, 'blog/post_detail.html', context=context)
 
 
 
@@ -131,6 +134,7 @@ class ThankYouView(TemplateView):
 class ReadLaterView(View):
 
     def get(self, request, *args, **kwargs):
+
         stored_posts = request.session.get('stored_posts')
         context={
 
@@ -163,4 +167,45 @@ class ReadLaterView(View):
         request.session['stored_posts'] = stored_posts
 
         return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+
+class ReadLaterView2(View):
+
+        def get(self, request, *args, **kwargs):
+
+            stored_posts = StoredPost.objects.filter(user=request.user)
+
+            context = {
+
+            }
+            if stored_posts is None or len(stored_posts) == 0:
+                context["stored_posts"] = []
+                context['has_posts'] = False
+            else:
+                post_ids = stored_posts.values_list('post_id', flat=True)
+                posts = Post.objects.filter(id__in=post_ids)
+                context["posts"] = posts
+                context['has_posts'] = True
+
+            return render(request, 'blog/read_later_page.html',
+                          context=context)
+
+"""
+def post(self, request):
+            stored_posts = StoredPost.objects.filter(user=request.user)
+
+            if stored_posts is None:
+                stored_posts = []
+
+            post_id = int(request.POST['post_id'])
+
+            if post_id not in stored_posts:
+                stored_posts.append(post_id)
+
+            else:
+                stored_posts.remove(post_id)
+            request.session['stored_posts'] = stored_posts
+
+            return HttpResponseRedirect(request.META.get('HTTP_REFERER', '/'))
+"""
+
 

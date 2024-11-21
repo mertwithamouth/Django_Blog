@@ -5,9 +5,11 @@
 
 {%  block css_style %}
         <link rel="stylesheet" href="{% static 'users/profile.css' %}">
+        <link rel="stylesheet" href="{% static 'header.css' %}">
 {%  endblock %}
 
 {% block content %}
+    {%  include "header.html" %}
 
 
     <div class="profile-card">

@@ -5,66 +5,18 @@ html, body {
 }
 
 body {
-    display: flex;
-    flex-direction: column;
-}
-
-.top-half {
-    background-color: #016bb3; /* Üst yarı için renk (mavi) */
-    height: 70%;
-}
-
-.bottom-half {
-    background-color: #cfefde; /* Alt yarı için renk (yeşil) */
-    height: 40%;
-}
-.top_info {
-    color: white;
-    display: grid;
-    grid-template-columns: 200px 150px;
-    gap: 15px;
-    margin-left: 50px;
+    height: 100%;
     align-items: center;
+    background: linear-gradient(135deg, #71b7e6, #9b59b6);
 }
-
-
-.top_info img{
-
-    width: 10rem;
-    height: 10rem;
-    object-fit: cover;
-    object-position: top;
-    border: 5px solid white;
-    border-radius: 12px;
-    background-color: #ffe1bf;
-    transform: rotateZ(-5deg);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
-    margin: 20px;
-
-}
-
-#bio_p{
-
-    color: white;
-    margin-left: 50px;
-    font-size: 20px;
-}
-
-
 
 
 #latest-posts {
-    position: absolute;
-    top: 70%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    margin: 5%;
     background-color: white;
     padding: 20px;
     border: 2px solid black;
     text-align: center;
-    width: 60%;
-
-
 }
 #latest-posts h2 {
   text-align: center;

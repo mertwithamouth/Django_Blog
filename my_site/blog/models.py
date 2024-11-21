@@ -41,3 +41,8 @@ class Comment(models.Model):
     user_name=models.ForeignKey(User, on_delete=models.CASCADE)
     text=models.TextField(max_length=400)
     post=models.ForeignKey(Post,on_delete=models.SET_NULL, null=True, related_name='comments')
+
+
+class StoredPost(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    post = models.ForeignKey(Post, on_delete=models.CASCADE)

@@ -4,7 +4,7 @@
         {%  block css_style %}
                  <link rel="stylesheet" href="{% static 'blog/start_page.css' %}">
 <link rel="stylesheet" href="{% static 'post.css' %}">
-                 <link rel="stylesheet" href="{% static 'blog//includes/header.css' %}">
+                 <link rel="stylesheet" href="{% static 'header.css' %}">
         {%  endblock %}
 
 
@@ -15,26 +15,19 @@
 {%  block content %}
 {%  include "header.html" %}
 
-<section class="top-half">
-    <div class="top_info">
-        <img src="{%static 'blog/images/mert_profile.jpg' %}" alt="">
-        <h2 >Mert' Akin's Blog</h2>
-    </div>
-    <p id="bio_p">Hi, My name is Mert Akin and I'm learning Django</p>
-</section>
 
 <section id="latest-posts">
   <h2>My Latest Thoughts</h2>
 
-  <ul>
-                {% for post in posts_db %}
-                        {% include "blog/includes/post.html" %}
-                {% endfor %}
-  </ul>
+  <div>
+      {% for post in posts_db %}
+          {% include "blog/includes/post.html" %}
+      {% endfor %}
+  </div>
 </section>
 
 
-<section class="bottom-half">
+
 
 </section>
 

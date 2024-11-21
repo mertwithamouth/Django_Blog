@@ -9,22 +9,28 @@
 {% block title %} Login Page {% endblock title%}
 
 {% block content %}
-    <form action="{% url 'login' %}" method="POST">
+     <section id="login-form">
+        <form action="{% url 'login' %}" method="POST">
     {% csrf_token %}
         {% for field in form %}
-            <div class="form-control">
-                {{ field.label_tag}}
-                {{ field }}
-                {{ field.error}}
+            <div class="form-group">
+                <div class="form-control">
+                    {{ field.label_tag}}
+                    {{ field }}
+                    {{ field.error}}
+                </div>
             </div>
         {% endfor %}
-        <button>Login</button>
-    <div>
-        <a href='{% url "register"  %}'>You Don't Have An Account? Sign Up</a>
+        <button class="submit-button">Login</button>
+    <div class="form-control">
+        <a href='{% url "register"  %}' >You Don't Have An Account? Sign Up</a>
     </div>
 
 
     </form>
+
+
+     </section>
 
 
 {% endblock content %}

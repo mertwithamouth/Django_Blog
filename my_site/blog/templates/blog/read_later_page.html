@@ -17,13 +17,14 @@ Read Later Page
 
         {%  if not has_posts %}
             <h1>You didn't save any posts to read later</h1>
-        {% endif %}
 
+         {%  elif  has_posts %}
         <ul>
             {% for post in posts %}
-                <li><a href="{% url 'post_detail' post.slug %}">{{ post.title }}</a></li>
+                <li><a href="{% url 'post_detail' post_id=post.id %}">{{ post.title}}</a></li>
             {% endfor %}
         </ul>
+    {% endif %}
     </section>
 
 

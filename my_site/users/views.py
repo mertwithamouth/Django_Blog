@@ -100,7 +100,5 @@ class ProfileUpdateView(LoginRequiredMixin,UpdateView):
             user_form.save()
             profile_form.save()
             messages.success(request, f'Your profile has been updated!')
-            print('it is saved')
             return redirect('users-profile')
-            print('it is saved2')
         return render(request, self.template_name, {'user_form': user_form, 'profile_form': profile_form})

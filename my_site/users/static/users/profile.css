@@ -1,7 +1,6 @@
 body {
     font-family: Arial, sans-serif;
     background: linear-gradient(to right, #0071e8, #b6cadf);
-    display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -9,6 +8,7 @@ body {
 }
 
 .profile-card {
+   
     background: #fff;
     border-radius: 15px;
     width: 50%;

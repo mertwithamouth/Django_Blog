@@ -1,15 +1,17 @@
-
-<li>
-    <article class="post">
-        <a href='{% url "post_detail" post.slug  %}'>
+<article class="post">
+        <a href='{% url "post_detail" post_id=post.id  %}'>
             <img src="{{ post.image.url }}">
                 <div class="post_content">
                     <h3> {{ post.title }}</h3>
                         <p>
                         {{ post.excerpt }}
                         </p>
+
                 </div>
             </img>
         </a>
-    </article>
-</li>
+        <p>
+            {{post.author}}
+        </p>
+</article>
+
