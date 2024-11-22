@@ -3,30 +3,44 @@
 
         {%  block css_style %}
                  <link rel="stylesheet" href="{% static 'blog/start_page.css' %}">
-<link rel="stylesheet" href="{% static 'post.css' %}">
+
                  <link rel="stylesheet" href="{% static 'header.css' %}">
         {%  endblock %}
 
 
 {%  block page_title %} Start Page {%  endblock %}
 
-
-
 {%  block content %}
 {%  include "header.html" %}
 
 
 <section id="latest-posts">
-  <h2>My Latest Thoughts</h2>
+  <h2>Latest Reviews</h2>
 
-  <div>
-      {% for post in posts_db %}
-          {% include "blog/includes/post.html" %}
+
+
+     <div class="post-area">
+
+        {% for post in posts_db %}
+          <div class="post-card">
+            <a href='{% url "post_detail" post_id=post.id  %}'>
+                <img src="{{ post.image.url }}">
+                    <div class="post_content">
+                        <h3> {{ post.title }}</h3>
+                        <p>
+                            {{ post.excerpt }}
+                        </p>
+                    </div>
+                </img>
+            </a>
+            <a class="post-author" href="{% url "users-profile" %}">
+                {{post.author}}
+            </a>
+          </div>
       {% endfor %}
-  </div>
-</section>
 
 
+    </div>
 
 
 </section>

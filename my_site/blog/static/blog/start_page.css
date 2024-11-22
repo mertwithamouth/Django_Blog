@@ -17,19 +17,29 @@ body {
     padding: 20px;
     border: 2px solid black;
     text-align: center;
+
 }
 #latest-posts h2 {
   text-align: center;
 }
 
-#latest-posts ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  gap: 1rem;
+/* Genel düzen */
+.post-area {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+
 }
 
-#latest-posts li {
-  flex: 1;
+/* Responsive layout - makes a one column layout instead of a two-column layout */
+@media (max-width: 800px) {
+  .post-area {
+    flex-direction: column;
+  }
+}
+
+.post-card{
+        width: 30%;
+        border: 1px solid black;
 }

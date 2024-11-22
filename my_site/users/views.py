@@ -9,6 +9,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.messages.views import SuccessMessageMixin
 from .forms import RegisterForm,LoginForm, UpdateUserForm,UpdateProfileForm
 from .models import Profile
+from blog.models import Post, Comment
+
 # Create your views here.
 class UserProfile(View):
     def get(self,request, *args, **kwargs):
@@ -73,15 +75,25 @@ class ResetPasswordView(SuccessMessageMixin,PasswordResetView):
     success_url= reverse_lazy("login")
 
 
-class ProfileDetailView(LoginRequiredMixin,DetailView):
+
+
+
+class ProfileDetailView_Deneme(View):
     model = Profile
     template_name = 'users/profile.html'
 
-    context_object_name = 'profile'
+    def get(self, request):
 
-    def get_object(self, queryset=None):
-        # Return the Profile of the currently logged-in user
-        return self.request.user.profile
+        context = {
+            'profile': self.request.user.profile,
+            'post_count': Post.objects.filter(author__username=self.request.user).count(),
+            'comment_count': Comment.objects.filter(user_name__username=self.request.user).count(),
+        }
+        return render(request, self.template_name, context=context)
+
+    def post(self, request, post_id):
+        pass
+
 
 
 class ProfileUpdateView(LoginRequiredMixin,UpdateView):

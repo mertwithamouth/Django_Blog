@@ -3,6 +3,8 @@
         <li><a href='{% url "start_page" %}'>Blog</a></li>
         <li><a href='{% url "posts" %}'>My Posts</a></li>
         <li><a href='{% url "read-later" %}'>Stored Posts</a></li>
+        <li><a href='{% url "create-post" %}'>Post</a></li>
+
     </ul>
 
     <div class="auth-section">
@@ -15,11 +17,11 @@
                 <button type="submit" class="logout-btn">Log Out</button>
             </form>
         {% else %}
-            <button>
-                <a href='{% url "login" %}'>Log In</a>
+            <button class="logout-btn">
+                <a href='{% url "login" %}' >Log In</a>
             </button>
-            <button>
-                <a href='{% url "register" %}'>Sign Up</a>
+            <button class="logout-btn">
+                <a href='{% url "register" %}' >Sign Up</a>
             </button>
         {% endif %}
     </div>

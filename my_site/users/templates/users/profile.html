@@ -20,14 +20,17 @@
             <h2 class="name">{{ profile.user}}</h2>
             <p class="email">{{ user.email }}</p>
             <p class="details">{{ profile.bio }}</p>
+            {%  for post in profile.post %}
+                {{post.title}}
+            {%  endfor %}
             <div class="stats">
                 <div>
-                    <span class="stat-number">65</span>
+                    <span class="stat-number">{{ post_count }}</span>
                     <span class="stat-label">Review</span>
                 </div>
 
                 <div>
-                    <span class="stat-number">21</span>
+                    <span class="stat-number">{{ comment_count }}</span>
                     <span class="stat-label">Comments</span>
                 </div>
             </div>
